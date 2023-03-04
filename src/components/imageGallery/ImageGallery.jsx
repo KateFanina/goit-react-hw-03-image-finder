@@ -67,31 +67,27 @@ class ImageGallery extends Component {
     return (
       <>
         {isLoading && <Loader />}
-        {!isLoading && (
-          <>
-            <Gallery>
-              {photos.map(photo => (
-                <ImageGalleryItem
-                  id={photo.id}
-                  key={photo.id}
-                  url={photo.url}
-                  webUrl={photo.webUrl}
-                  tags={photo.tags}
-                />
-              ))}
-            </Gallery>
-            {!!photos?.length && photos?.length < +totalHits && (
-              <Button
-                handleLoadMore={() => {
-                  console.log('hi');
-                  this.setState(prevState => ({
-                    ...prevState,
-                    page: prevState.page + 1,
-                  }));
-                }}
-              />
-            )}
-          </>
+        <Gallery>
+          {photos.map(photo => (
+            <ImageGalleryItem
+              id={photo.id}
+              key={photo.id}
+              url={photo.url}
+              webUrl={photo.webUrl}
+              tags={photo.tags}
+            />
+          ))}
+        </Gallery>
+        {!!photos?.length && photos?.length < +totalHits && (
+          <Button
+            handleLoadMore={() => {
+              console.log('hi');
+              this.setState(prevState => ({
+                ...prevState,
+                page: prevState.page + 1,
+              }));
+            }}
+          />
         )}
       </>
     );
